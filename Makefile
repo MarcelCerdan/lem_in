@@ -20,9 +20,10 @@ DIR_LIBFT	=	libft/
 
 LIBFT = $(DIR_LIBFT)/libft.a
 
-HEAD_LIST	=	main.h \
+HEAD_LIST	=	lem_in.h \
 
 SRCS_LST 	= 	main.c \
+				parsing/parse_arguments.c \
 
 OBJS 		= 	$(addprefix $(DIR_OBJS), $(SRCS_LST:.c=.o))
 
