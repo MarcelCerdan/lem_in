@@ -1,28 +1,35 @@
 #include "lem_in.h"
 
-static int check_line_validity(char *line);
+static int check_start_end(char *line, t_start_end *start_end);
 static int check_ant_nb(char *str_ant_nb);
 static int check_room(argv);
+static int skip_comments(char **argv, int i);
 
 int parse_arguments(char **argv)
 {
     int i = 0;
     int ant_nb = -1;
-    
+	t_room *start = NULL;
+	t_room *end = NULL;
 
     while (argv[i])
     {
-        check_line_validity(argv[i]);
-        if (ant_nb == -1)
-            ant_nb = check_ant_nb(argv[i]);
-        check_room();
+		i = skip_comments(argv, i);
+		if (ant_nb == -1)
+			ant_nb = check_ant_nb(argv[i]);
+		if (!check_start_end(argv[i]))
+		{
+			check_line(argv[i], start, end);
+		}
     }
     return (0);
 }
 
-static int check_line_validity(char *line)
+static int skip_comments(char **argv, int i)
 {
-    if (line[0])
+	while (argv[i][0] == '#' && ft_strcmp(argv[i], "##start") != 0 && ft_strcmp(argv[i], "##end") != 0)
+		i++;
+	return (i);
 }
 
 static int check_ant_nb(char *str_ant_nb)
@@ -31,11 +38,55 @@ static int check_ant_nb(char *str_ant_nb)
 
     if (ant_nb <= 0)
         display_error("Invalid number of ants");
-
     return (ant_nb);
 }
 
-static int check_room(argv)
+static int check_start_end(char **argv, int i, t_room *start, t_room *end)
 {
-    
+	char *line = argv[i];
+
+	if (line == '#')
+	{
+		if (ft_strcmp(line, "##start") == 0)
+		{
+			if (start != NULL)
+				display_error("Multiple start commands");
+			return (1);
+		}
+		else if ((ft_strcmp(line, "##end") == 0))
+		{
+			if (start_end->end != NULL)
+				display_error("Multiple end commands");
+			return (2);
+		}
+	}
+	return (0);
+}
+
+static int name_len(char *line)
+{
+	int i = 0;
+
+	while (line[i] != ' ')
+		i++;
+	return (i);
+}
+
+static void fill_start_end(char *line, t_room *room_to_fill)
+{
+	check_line()
+}
+
+static void check_line(char *line, t_room *room)
+{
+	if (line[0] == 'L')
+		display_error("Room name can't start with \'L\'");
+
+	int size = name_len(line);
+	char room->name = malloc((sizeof(char) * size) + 1);
+
+	if (!room->name)
+		display_error("Malloc error");
+	
+	ft_strcpy
 }
