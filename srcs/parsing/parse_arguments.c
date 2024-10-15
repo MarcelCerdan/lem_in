@@ -63,7 +63,7 @@ static int check_start_end(char **argv, int i, t_room *start, t_room *end)
 	return (0);
 }
 
-static int name_len(char *line)
+static int param_len(char *line)
 {
 	int i = 0;
 
@@ -82,11 +82,18 @@ static void check_line(char *line, t_room *room)
 	if (line[0] == 'L')
 		display_error("Room name can't start with \'L\'");
 
-	int size = name_len(line);
+	int size = param_len(line);
 	char room->name = malloc((sizeof(char) * size) + 1);
 
 	if (!room->name)
 		display_error("Malloc error");
 	
-	ft_strcpy
+	ft_strncpy(room->name, line, size);
+	room->name[size + 1] = '\0';
+
+	int first_param_len = param_len(line + size + 1);
+	int second_param_len = param_len(line + first_param_len + 1);
+
+	char first_param[first_param-len + 1];
+	char second_param[second_param_len + 1];
 }
