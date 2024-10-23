@@ -24,6 +24,8 @@ HEAD_LIST	=	lem_in.h \
 
 SRCS_LST 	= 	main.c \
 				parsing/parse_arguments.c \
+				parsing/get_map.c \
+				errors.c \
 
 OBJS 		= 	$(addprefix $(DIR_OBJS), $(SRCS_LST:.c=.o))
 

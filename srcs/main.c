@@ -2,8 +2,11 @@
 
 int main(int argc, char **argv)
 {
-	t_room rooms[];
+	(void) argc;
+	(void) argv;
 
-	parse_arguments(argv, &rooms);
+	// t_room *rooms;
+
+	parse_arguments();
 	return (0);
 }
