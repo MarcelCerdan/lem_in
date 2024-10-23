@@ -25,7 +25,6 @@ int parse_arguments()
 		line = get_next_line(0);
     }
 	free(line);
-	ft_printf("%s", end->name);
     return (0);
 }
 
